@@ -9,6 +9,9 @@
 ;; packages to install:
 ;; evil
 ;; evil-leader
+;; evil-surround
+;; evil-nerd-commenter
+;; evil-matchit
 ;; dtrt-indent
 
 (dtrt-indent-mode t)
@@ -24,6 +27,12 @@
   "f" 'find-file
   "b" 'switch-to-buffer
   "k" 'kill-buffer)
+
+(require 'evil-surround)
+(global-evil-surround-mode t)
+
+(require 'evil-matchit)
+(global-evil-matchit-mode t)
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
@@ -68,7 +77,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
- '(package-selected-packages (quote (dtrt-indent evil-leader evil))))
+ '(package-selected-packages
+   (quote
+    (evil-matchit evil-nerd-commenter evil-surround dtrt-indent evil-leader evil))))
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
