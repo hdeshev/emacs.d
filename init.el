@@ -14,6 +14,8 @@
 ;; evil-matchit
 ;; dtrt-indent
 ;; helm
+;; projectile
+;; helm-projectile
 
 (dtrt-indent-mode t)
 (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -82,7 +84,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(package-selected-packages
    (quote
-    (evil-matchit evil-nerd-commenter evil-surround dtrt-indent evil-leader evil))))
+    (helm-projectile 0blayout projectile evil-matchit evil-nerd-commenter evil-surround dtrt-indent evil-leader evil))))
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
@@ -96,3 +98,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'helm-config)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (helm-mode t)
+
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(require 'helm-projectile)
+(helm-projectile-on)
