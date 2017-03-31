@@ -71,6 +71,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Disable syntax highlight in typescript-mode
 ;; Somehow still enabled even after global-font-lock-mode setting.
 (add-hook 'typescript-mode-hook (lambda () (font-lock-mode 0)))
+(set-default-font "DejaVu Sans Mono 12")
 
 ;; Indent/tabs
 (setq-default indent-tabs-mode nil
@@ -108,3 +109,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq projectile-completion-system 'helm)
 (require 'helm-projectile)
 (helm-projectile-on)
+
+(defun shell-hook ()
+  (evil-local-mode 0)
+  (font-lock-mode 1))
+
+(add-hook 'eshell-mode-hook 'shell-hook)
+(add-hook 'term-mode-hook 'shell-hook)
