@@ -13,6 +13,7 @@
 ;; evil-nerd-commenter
 ;; evil-matchit
 ;; dtrt-indent
+;; helm
 
 (dtrt-indent-mode t)
 (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -58,6 +59,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (setq inhibit-startup-message t)
+;; Prevent clipboard transfers at exit (hangs...)
+(setq x-select-enable-clipboard-manager nil)
 
 ;; Disable syntax highlight
 (global-font-lock-mode 0)
@@ -89,3 +92,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(require 'helm-config)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(helm-mode t)
