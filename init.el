@@ -17,6 +17,7 @@
 ;; projectile
 ;; helm-projectile
 ;; typescript-mode
+;; simpleclip
 
 (dtrt-indent-mode t)
 (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -31,7 +32,9 @@
 (setq evil-leader/in-all-states 1)
 (evil-leader/set-key
   "f" 'helm-find-files
-  "b" 'switch-to-buffer)
+  "b" 'switch-to-buffer
+  "p" 'simpleclip-paste
+  "y" 'simpleclip-copy)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 (require 'evil-surround)
@@ -92,7 +95,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(package-selected-packages
    (quote
-    (typescript-mode helm-projectile 0blayout projectile evil-matchit evil-nerd-commenter evil-surround dtrt-indent evil-leader evil))))
+    (simpleclip typescript-mode helm-projectile 0blayout projectile evil-matchit evil-nerd-commenter evil-surround dtrt-indent evil-leader evil))))
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
