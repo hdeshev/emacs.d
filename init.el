@@ -16,6 +16,7 @@
 ;; helm
 ;; projectile
 ;; helm-projectile
+;; typescript-mode
 
 (dtrt-indent-mode t)
 (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -23,13 +24,14 @@
 (require 'evil)
 (evil-mode t)
 
+(define-key evil-insert-state-map (kbd "<RET>") 'newline-and-indent)
+
 (global-evil-leader-mode)
 (evil-leader/set-leader "\\")
 (setq evil-leader/in-all-states 1)
 (evil-leader/set-key
-  "f" 'find-file
-  "b" 'switch-to-buffer
-  "k" 'kill-buffer)
+  "f" 'helm-find-files
+  "b" 'switch-to-buffer)
 
 (require 'evil-surround)
 (global-evil-surround-mode t)
@@ -66,6 +68,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Disable syntax highlight
 (global-font-lock-mode 0)
+;; Disable syntax highlight in typescript-mode
+;; Somehow still enabled even after global-font-lock-mode setting.
+(add-hook 'typescript-mode-hook (lambda () (font-lock-mode 0)))
 
 ;; Indent/tabs
 (setq-default indent-tabs-mode nil
@@ -84,7 +89,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(package-selected-packages
    (quote
-    (helm-projectile 0blayout projectile evil-matchit evil-nerd-commenter evil-surround dtrt-indent evil-leader evil))))
+    (typescript-mode helm-projectile 0blayout projectile evil-matchit evil-nerd-commenter evil-surround dtrt-indent evil-leader evil))))
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
