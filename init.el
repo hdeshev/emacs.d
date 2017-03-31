@@ -32,6 +32,7 @@
 (evil-leader/set-key
   "f" 'helm-find-files
   "b" 'switch-to-buffer)
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 (require 'evil-surround)
 (global-evil-surround-mode t)
@@ -72,6 +73,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Somehow still enabled even after global-font-lock-mode setting.
 (add-hook 'typescript-mode-hook (lambda () (font-lock-mode 0)))
 (set-default-font "DejaVu Sans Mono 12")
+(load-theme 'wombat)
 
 ;; Indent/tabs
 (setq-default indent-tabs-mode nil
